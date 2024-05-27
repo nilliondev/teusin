@@ -1,0 +1,163 @@
+---
+import Layout from "../layouts/LayoutBoost.astro";
+---
+
+<Layout title="Teusin APP - Boost IA">
+  <main class="flex flex-col w-full md:w-4/12 h-svh">
+    <div
+      class="fixed z-50 flex w-full justify-between px-10 py-1 md:w-4/12 md:left-auto"
+    >
+      <a
+        id="back-link"
+        href="/boost-ia-link"
+        class="h-8 transition-transform transform-gpu hover:scale-110"
+      >
+        <img src="/btn-back-boost-ia.svg" alt="" />
+      </a>
+      <div class="flex flex-col w-24">
+        <div
+          class="bg-btn-signal bg-opacity-80 px-3 py-1 rounded-t-md text-white"
+        >
+          <img src="/horario-boost-entrada.svg" alt="" />
+        </div>
+        <div
+          class="bg-black bg-opacity-80 text-lime-500 text-center font-black italic py-1 rounded-b-md"
+        >
+          <span id="horario-sinal">--:--</span>
+        </div>
+        <button
+          id="signalButton"
+          class="flex justify-center items-center h-9 bg-btn-signal px-3 py-1 rounded-lg mt-1 transition-transform transform-gpu hover:scale-110 relative"
+        >
+          <img src="/buscar-sinal.svg" alt="" />
+          <svg
+            id="signalLoadingIcon"
+            class="absolute w-5 h-5 text-white animate-spin hidden"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="flex">
+      <script
+        src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+        type="module"></script>
+
+      <dotlottie-player
+        src="https://lottie.host/4acd1d26-e648-4f8f-823a-44217cbef42a/YC627eZKK1.json"
+        background="transparent"
+        speed="1"
+        style="width: 100%; height: 100%;"
+        loop
+        autoplay></dotlottie-player>
+    </div>
+    <iframe src="" id="iframe-link-game" class="bg-white h-svh"></iframe>
+  </main>
+</Layout>
+
+<script>
+  // Verifica se há um link salvo no localStorage
+  const gameLink = localStorage.getItem("game-link");
+
+  if (gameLink) {
+    // Se houver um link, define o src do iframe com esse link
+    const iframe = document.getElementById(
+      "iframe-link-game",
+    ) as HTMLIFrameElement;
+    iframe.src = gameLink;
+  } else {
+    // Se não houver um link, redireciona para "/boost-ia-link"
+    window.location.href = "/boost-ia-link";
+  }
+  // animation Btn
+  const signalButton = document.getElementById("signalButton");
+  const signalLoadingIcon = document.getElementById("signalLoadingIcon");
+  const horarioSinalSpan = document.getElementById("horario-sinal");
+
+  signalButton.addEventListener("click", () => {
+    // Desativa o evento de clique no botão
+    signalButton.removeEventListener("click", handleClick);
+
+    // Exibe o ícone de carregamento e esconde a imagem
+    signalLoadingIcon.classList.remove("hidden");
+    signalButton.querySelector("img").classList.add("hidden");
+
+    // Gera um tempo aleatório entre 5 e 10 segundos em milissegundos
+    const tempoAleatorio = Math.floor(
+      Math.random() * (10000 - 5000 + 1) + 5000,
+    );
+
+    // Simula o carregamento por um tempo aleatório
+    setTimeout(() => {
+      // Reativa o evento de clique no botão
+      signalButton.addEventListener("click", handleClick);
+
+      // Oculta o ícone de carregamento e exibe a imagem
+      signalLoadingIcon.classList.add("hidden");
+      signalButton.querySelector("img").classList.remove("hidden");
+
+      // Atualiza o horário do sinal para a data atual mais 2 a 4 minutos
+      const dataAtual = new Date();
+      const minutosAleatorios = Math.floor(Math.random() * (5 - 2 + 1) + 2);
+      dataAtual.setMinutes(dataAtual.getMinutes() + minutosAleatorios);
+
+      // Formata a data para HH:MM
+      const hora = String(dataAtual.getHours()).padStart(2, "0");
+      const minutos = String(dataAtual.getMinutes()).padStart(2, "0");
+      const novoHorario = `${hora}:${minutos}`;
+      horarioSinalSpan.textContent = novoHorario;
+    }, tempoAleatorio);
+  });
+
+  function handleClick() {
+    // Impede a execução do evento de clique quando o botão estiver em modo de carregamento
+    return false;
+  }
+
+  // Lg
+  const nome = localStorage.getItem("nome");
+  const email = localStorage.getItem("email");
+  if (!nome || !email) {
+    window.location.href = "/";
+  }
+
+  // BG
+  const backButton = document.getElementById("back-link");
+  backButton.addEventListener("click", () => {
+    localStorage.removeItem("game-link");
+  });
+</script>
+
+<style>
+  .bg-btn-signal {
+    background: linear-gradient(97.08deg, #f71052 34.97%, #b30f9a 123.14%);
+  }
+
+  @keyframes spin-slow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin {
+    animation: spin-slow 2s linear infinite;
+  }
+</style>

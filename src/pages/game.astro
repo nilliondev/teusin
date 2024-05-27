@@ -1,0 +1,18 @@
+---
+import TopBarBack from "../components/TopBarBack.astro";
+import TitleGamePage from "../components/TitleGamePage.astro";
+import SignalPageGame from "../components/SignalPageGame.astro";
+import Layout from "../layouts/LayoutApp.astro";
+---
+<TopBarBack>
+
+
+</TopBarBack>
+<Layout title="Teusin APP - Game Sinal">
+  <main class="px-8 flex flex-col w-full gap-5 md:w-4/12">
+    <TitleGamePage client/>
+    <SignalPageGame client />
+  </main>
+
+
+</Layout>

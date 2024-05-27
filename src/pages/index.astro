@@ -1,0 +1,163 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Logo from "../components/Logo-Login.astro";
+import Instagram from "../components/btns/Instagram.astro";
+---
+
+<Layout title="Teusin APP">
+	<main>
+		<Logo />
+		<div
+			class="flex flex-col max-w-80 mx-auto sm:max-w-300 bg-black bg-opacity-40 backdrop-blur-md p-8 rounded-xl mb-5 mt-9 gap-5"
+		>
+			<input
+				type="email"
+				id="emailLog"
+				class="h-14 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+				placeholder="Email"
+				required
+			/>
+			<input
+				type="password"
+				id="passwordLog"
+				class="h-14 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+				placeholder="Senha"
+				required
+			/>
+
+			<button
+				id="loginButton"
+				type="button"
+				class="h-14 w-full justify-center items-center inline-flex px-4 py-2 text-sm font-semibold leading-6 text-white transition duration-150 ease-in-out bg-button-new rounded-md shadow"
+			>
+				<svg
+					id="loadingIcon"
+					class="w-5 h-5 mr-3 -ml-1 text-white animate-spin hidden"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+				>
+					<circle
+						class="opacity-25"
+						cx="12"
+						cy="12"
+						r="10"
+						stroke="currentColor"
+						stroke-width="4"></circle>
+					<path
+						class="opacity-75"
+						fill="currentColor"
+						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+					></path>
+				</svg>
+				<span id="buttonText">Entrar</span>
+			</button>
+
+			<a
+				href="#"
+				class="w-full h-14 relative px-6 py-2 border border-white text-white font-medium rounded-lg hover:bg-white hover:text-pink-600 transition duration-300 ease-in-out text-center flex items-center justify-center"
+				>Não tem acesso? Veja como</a
+			>
+		</div>
+
+		<style>
+			.bg-button-new {
+				background: linear-gradient(
+					97.08deg,
+					#f71052 34.97%,
+					#b30f9a 123.14%
+				);
+			}
+		</style>
+
+		<Instagram />
+	</main>
+</Layout>
+
+<script>
+	// Verificar se há dados de nome e email no localStorage
+	const nome = localStorage.getItem("nome");
+	const email = localStorage.getItem("email");
+
+	// Se os dados estiverem presentes, redirecione para a página "/app"
+	if (nome && email) {
+		window.location.href = "/app";
+	}
+	
+	const fetchData = async () => {
+		const response = await fetch(
+			"https://script.google.com/macros/s/AKfycbxmYv8Lf78CprE9pje5VVH-4s2ST9AJ9uCxSJ4OjILQo_CBBirgff4EBlUh3rmDyO9O/exec",
+		);
+		const data = await response.json();
+		return data;
+	};
+
+	const verificarCredenciais = async () => {
+		const inputEmail = (
+			document.getElementById("emailLog") as HTMLInputElement
+		)?.value.trim();
+		const inputSenha = (
+			document.getElementById("passwordLog") as HTMLInputElement
+		)?.value.trim();
+
+		// Verificar se os campos de entrada não estão vazios
+		if (!inputEmail || !inputSenha) {
+			alert("Por favor, preencha o email e a senha.");
+			return;
+		}
+
+		// Oculta o texto e mostra o ícone de carregamento
+		buttonText.classList.add("hidden");
+		loadingIcon.classList.remove("hidden");
+
+		// Verificar se o email está correto
+		const data = await fetchData();
+		let usuarioEncontrado = data.find(
+			(item) => item.Email.trim() === inputEmail,
+		);
+
+		if (!usuarioEncontrado) {
+			// Se o email não for encontrado, exibe uma mensagem de alerta e reexibe o texto do botão
+			alert("Email não encontrado");
+			buttonText.classList.remove("hidden");
+			loadingIcon.classList.add("hidden");
+			return;
+		}
+
+		// Verificar se a senha está correta
+		if (inputSenha === "senhateste") {
+			// Salvar dados no localStorage
+			localStorage.setItem("email", usuarioEncontrado.Email);
+			localStorage.setItem("nome", usuarioEncontrado.Nome);
+
+			// Redirecionar para /app se as credenciais estiverem corretas
+			window.location.href = "/app";
+		} else {
+			// Se a senha estiver incorreta, exibe uma mensagem de alerta e reexibe o texto do botão
+			alert("Senha incorreta");
+			buttonText.classList.remove("hidden");
+			loadingIcon.classList.add("hidden");
+		}
+	};
+
+	const loginButton = document.getElementById("loginButton");
+	const buttonText = document.getElementById("buttonText");
+	const loadingIcon = document.getElementById("loadingIcon");
+
+	loginButton.addEventListener("click", verificarCredenciais);
+</script>
+
+<style>
+	@keyframes spin-slow {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	.animate-spin-slow {
+		animation: spin-slow 2s linear infinite;
+	}
+</style>

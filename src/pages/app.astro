@@ -1,0 +1,65 @@
+---
+import TopBar from "../components/TopBar.astro";
+import Layout from "../layouts/LayoutApp.astro";
+import Games from "../components/Games.astro";
+import UserContent from "../components/UserContent.astro";
+import BoostIABtn from "../components/BoostIA-btn.astro";
+import BoostIAHome from "../components/BoostIAHome.astro";
+---
+<Layout title="Teusin APP">
+	<main class="md:w-4/12 sm:w-full">
+		<div id="home-content" class="text-whit">
+			<BoostIAHome />
+			<Games client />
+		</div>
+		<div id="user-content" class="hidden text-white mt-32 w-full justify-center">
+			<UserContent client />
+		</div>
+
+		<div
+			class="fixed bottom-0 bg-bottom-bar h-20 w-full backdrop-blur-sm md:w-4/12 md:rounded-t-lg left-0 md:left-auto"
+		>
+			<div
+				class="h-full max-w-3xl mx-auto px-9 sm:px-6 lg:px-8 flex items-center justify-between md:justify-around"
+			>
+				<a id="home-btn" class="text-gray-300 hover:text-white cursor-pointer transition-transform transform-gpu hover:scale-110">
+					<img src="/icon-home.svg" alt="" />
+				</a>
+				<a id="user-btn" class="text-gray-300 hover:text-white cursor-pointer transition-transform transform-gpu hover:scale-110">
+					<img src="/icon-user.svg" alt="" />
+				</a>
+			</div>
+		</div>
+	</main>
+	<BoostIABtn />
+	<TopBar />
+</Layout>
+
+<script>
+	const userPageButton = document.getElementById("user-btn");
+	const homePageButton = document.getElementById("home-btn");
+	const homeContent = document.getElementById("home-content");
+	const userContent = document.getElementById("user-content");
+
+	userPageButton.addEventListener("click", function () {
+		homeContent.classList.add("hidden");
+		userContent.classList.remove("hidden");
+	});
+
+	homePageButton.addEventListener("click", function () {
+		if (!homeContent.classList.contains("hidden")) {
+		}
+		homeContent.classList.remove("hidden");
+		userContent.classList.add("hidden");
+	});
+</script>
+
+<style>
+	.bg-bottom-bar {
+		background: linear-gradient(
+			91.98deg,
+			rgba(248, 16, 81, 0.89) 0%,
+			rgba(175, 15, 158, 0.89) 100%
+		);
+	}
+</style>

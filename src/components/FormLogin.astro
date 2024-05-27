@@ -1,0 +1,90 @@
+---
+
+---
+
+<form class="max-w-80 mx-auto sm:max-w-300 bg-black bg-opacity-40 backdrop-blur-md p-8 rounded-xl mt-9">
+
+  <div class="mb-5">
+    <input
+      type="email"
+      id="emailLog"
+      class="h-14 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+      placeholder="Email"
+      required
+    />
+  </div>
+  <div class="mb-5">
+    <input
+      type="password"
+      id="passwordLog"
+      class="h-14 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+      placeholder="Senha"
+      required
+    />
+  </div>
+
+  <button
+    id="loginButton"
+    type="submit"
+    class="mb-5 h-14 relative text-white bg-button-new focus:outline-none font-medium rounded-lg w-full px-5 py-2.5 text-center"
+  >
+    <span class="relative z-10">Entrar</span>
+  </button>
+
+  <a
+    href="#"
+    class="w-full h-14 relative px-6 py-2 border border-white text-white font-medium rounded-lg hover:bg-white hover:text-pink-600 transition duration-300 ease-in-out text-center flex items-center justify-center"
+    >Não tem acesso? Veja como</a
+  >
+</form>
+
+
+<style>
+  .bg-button-new {
+    background: linear-gradient(97.08deg, #f71052 34.97%, #b30f9a 123.14%);
+  }
+</style>
+
+
+<script>
+  const fetchData = async () => {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxmYv8Lf78CprE9pje5VVH-4s2ST9AJ9uCxSJ4OjILQo_CBBirgff4EBlUh3rmDyO9O/exec');
+      const data = await response.json();
+  
+      // **Acessa o objeto data após a requisição ser finalizada**
+      return data;
+  };
+
+  const verificarCredenciais = async () => {
+      const inputEmail = (document.getElementById("emailLog") as HTMLInputElement)?.value.trim();
+      const inputSenha = (document.getElementById("passwordLog") as HTMLInputElement)?.value.trim();
+
+      // Verificar se o email está correto
+      const data = await fetchData();
+      let usuarioEncontrado: any = null;
+      data.forEach(item => {
+          if (item.Email.trim() === inputEmail) {
+              usuarioEncontrado = item;
+          }
+      });
+
+      if (!usuarioEncontrado) {
+          alert("Email não encontrado");
+          return;
+      }
+
+      // Verificar se a senha está correta
+      if (inputSenha === "senhateste") {
+          // Salvar dados no localStorage
+          localStorage.setItem('email', usuarioEncontrado.Email);
+          localStorage.setItem('nome', usuarioEncontrado.Nome);
+
+          // Redirecionar para /app se as credenciais estiverem corretas
+          window.location.href = "/app";
+      } else {
+          alert("Senha incorreta");
+      }
+  };
+
+  document.getElementById("loginButton")?.addEventListener("click", verificarCredenciais);
+</script>

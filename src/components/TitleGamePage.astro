@@ -1,0 +1,221 @@
+<div
+  class="text-white max-h-48 w-full bg-title-signal flex flex-col p-5 rounded-3xl backdrop-blur-sm gap-3"
+  style="margin-top: 80px;"
+>
+  <h1 id="nome-game" class="text-center font-black italic text-base"></h1>
+  <div class="flex justify-between gap-5">
+    <img id="imagem-game" src="" class="w-28 drop-shadow-md" alt="" />
+    <div class="flex flex-col w-full gap-1">
+      <div class="flex flex-col w-full text-center">
+        <spa class="font-bold text-xs">Aposta Padrão</spa>
+
+        <div
+          class="h-5 w-full bg-gray-600 rounded-full dark:bg-gray-600 relative"
+        >
+          <div
+            id="porcentagem-game"
+            class="progress-bar bg-green h-5 text-xs font-medium text-white text-center p-0.5 leading-none rounded-full"
+            style="width: 50%"
+          >
+            <p class="absolute inset-0 flex items-center justify-center">
+              <span
+                id="porcentagem-texto"
+                class="font-bold italic text-white"
+                style="text-shadow: 0 0 5px rgba(0,0,0,0.5)">--</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col w-full text-center">
+        <spa class="font-bold text-xs">Aposta Mínima</spa>
+
+        <div
+          class="h-5 w-full bg-gray-600 rounded-full dark:bg-gray-600 relative"
+        >
+          <div
+            id="aposta-minima"
+            class="progress-bar bg-green h-5 text-xs font-medium text-white text-center p-0.5 leading-none rounded-full"
+            style="width: 50%"
+          >
+            <p class="absolute inset-0 flex items-center justify-center">
+              <span
+                id="porcentagem-txt-minima"
+                class="font-bold italic text-white"
+                style="text-shadow: 0 0 5px rgba(0,0,0,0.5)">--</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col w-full text-center">
+        <spa class="font-bold text-xs">Aposta Máxima</spa>
+
+        <div
+          class="h-5 w-full bg-gray-600 rounded-full dark:bg-gray-600 relative"
+        >
+          <div
+            id="aposta-maxima"
+            class="progress-bar bg-green h-5 text-xs font-medium text-white text-center p-0.5 leading-none rounded-full"
+            style="width: 50%"
+          >
+            <p class="absolute inset-0 flex items-center justify-center">
+              <span
+                id="porcentagem-txt-maxima"
+                class="font-bold italic text-white"
+                style="text-shadow: 0 0 5px rgba(0,0,0,0.5)">--</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+// Função para definir a cor de fundo com base no valor da porcentagem
+function setColorBasedOnPercentage(percentage) {
+  var color;
+  if (percentage < 50 && percentage >= 20) {
+    color = "#EEAF0E"; // Amarelo
+  } else if (percentage < 20) {
+    color = "#EE0E5F"; // Vermelho
+  } else {
+    color = "#2DEE0E"; // Verde
+  }
+  return color;
+}
+
+// Função para atualizar a porcentagem, aposta mínima e aposta máxima
+function updateAllValues() {
+  // Gerar um novo valor de porcentagem aleatório entre 30 e 85
+  var newPercentage = Math.floor(Math.random() * (85 - 30 + 1)) + 30;
+  // Calcula a nova aposta mínima (porcentagem + 6%)
+  var newMinBetPercentage = newPercentage + 6;
+  // Calcula a nova aposta máxima (porcentagem - 11%)
+  var newMaxBetPercentage = newPercentage - 11;
+
+  // Atualizar a porcentagem no localStorage
+  gameData.percentage = newPercentage;
+  localStorage.setItem("Game current", JSON.stringify(gameData));
+
+  // Atualizar a porcentagem no elemento HTML
+  var percentageBar = document.getElementById("porcentagem-game");
+  if (percentageBar instanceof HTMLElement) {
+    percentageBar.style.width = newPercentage + "%";
+    var porcentagemTextoElement = document.getElementById("porcentagem-texto");
+    if (porcentagemTextoElement instanceof HTMLElement) {
+      porcentagemTextoElement.textContent = newPercentage + "%";
+    }
+    // Mudança de cor de fundo dependendo do valor da porcentagem
+    percentageBar.style.backgroundColor = setColorBasedOnPercentage(newPercentage);
+  }
+
+  // Atualizar a aposta mínima no elemento HTML
+  var minBetElement = document.getElementById("aposta-minima");
+  if (minBetElement instanceof HTMLElement) {
+    minBetElement.style.width = newMinBetPercentage + "%";
+    // Atualizar o valor da porcentagem com 6% a mais no elemento span
+    var porcentagemTxtMinima = document.getElementById("porcentagem-txt-minima");
+    if (porcentagemTxtMinima instanceof HTMLElement) {
+      porcentagemTxtMinima.textContent = newMinBetPercentage + "%";
+    }
+  }
+
+  // Atualizar a aposta máxima no elemento HTML
+  var maxBetElement = document.getElementById("aposta-maxima");
+  if (maxBetElement instanceof HTMLElement) {
+    maxBetElement.style.width = newMaxBetPercentage + "%";
+    // Atualizar o valor da porcentagem com 11% a menos no elemento span
+    var porcentagemTxtMaxima = document.getElementById("porcentagem-txt-maxima");
+    if (porcentagemTxtMaxima instanceof HTMLElement) {
+      porcentagemTxtMaxima.textContent = newMaxBetPercentage + "%";
+    }
+    // Mudança de cor de fundo dependendo do valor da porcentagem
+    maxBetElement.style.backgroundColor = setColorBasedOnPercentage(newPercentage);
+  }
+}
+
+// Função para iniciar o temporizador de atualização da porcentagem, aposta mínima e aposta máxima
+function startUpdateTimer() {
+  setInterval(updateAllValues, 60000); // Executar a função updateAllValues a cada 5 segundos
+}
+
+// Obter dados do localStorage
+var gameData = JSON.parse(localStorage.getItem("Game current"));
+
+// Verificar se existem dados no localStorage
+if (gameData) {
+  // Atualizar o nome do jogo
+  document.getElementById("nome-game").textContent = gameData.name;
+
+  // Atualizar a imagem do jogo
+  var imageElement = document.getElementById("imagem-game");
+  if (imageElement instanceof HTMLImageElement) {
+    imageElement.src = gameData.path;
+  }
+
+  // Atualizar a porcentagem do jogo
+  var percentageBar = document.getElementById("porcentagem-game");
+  if (percentageBar instanceof HTMLElement) {
+    percentageBar.style.width = gameData.percentage + "%";
+    var porcentagemTextoElement = document.getElementById("porcentagem-texto");
+    if (porcentagemTextoElement instanceof HTMLElement) {
+      porcentagemTextoElement.textContent = gameData.percentage + "%";
+    }
+    // Mudança de cor de fundo dependendo do valor da porcentagem
+    percentageBar.style.backgroundColor = setColorBasedOnPercentage(gameData.percentage);
+  }
+
+  // Atualizar a aposta mínima do jogo
+  var minBetElement = document.getElementById("aposta-minima");
+  if (minBetElement instanceof HTMLElement) {
+    // Calcula a aposta mínima inicial (porcentagem inicial + 6%)
+    var initialMinBetPercentage = gameData.percentage + 6;
+    minBetElement.style.width = initialMinBetPercentage + "%";
+    // Define o valor inicial da porcentagem com 6% a mais
+    var porcentagemTxtMinima = document.getElementById("porcentagem-txt-minima");
+    if (porcentagemTxtMinima instanceof HTMLElement) {
+      porcentagemTxtMinima.textContent = initialMinBetPercentage + "%";
+    }
+  }
+
+  // Atualizar a aposta máxima do jogo
+  var maxBetElement = document.getElementById("aposta-maxima");
+  if (maxBetElement instanceof HTMLElement) {
+    // Calcula a aposta máxima inicial (porcentagem inicial - 11%)
+    var initialMaxBetPercentage = gameData.percentage - 11;
+    maxBetElement.style.width = initialMaxBetPercentage + "%";
+    // Define o valor inicial da porcentagem com 11% a menos
+    var porcentagemTxtMaxima = document.getElementById("porcentagem-txt-maxima");
+    if (porcentagemTxtMaxima instanceof HTMLElement) {
+      porcentagemTxtMaxima.textContent = initialMaxBetPercentage + "%";
+    }
+    // Mudança de cor de fundo inicial dependendo do valor da porcentagem
+    maxBetElement.style.backgroundColor = setColorBasedOnPercentage(gameData.percentage);
+  }
+
+  // Iniciar o temporizador de atualização da porcentagem, aposta mínima e aposta máxima
+  startUpdateTimer();
+}
+
+  </script>
+</div>
+
+<style>
+  .progress-bar {
+    transition: width 1s ease; /* Define a transição com duração de 1 segundo e função de timing ease */
+  }
+
+  .bg-title-signal {
+    background: linear-gradient(
+      180deg,
+      rgba(170, 16, 164, 0.44) 0%,
+      rgba(238, 14, 95, 0.63) 100%
+    );
+  }
+
+  .bg-green {
+    background-color: #2dee0e;
+  }
+</style>

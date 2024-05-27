@@ -1,0 +1,203 @@
+<div class="text-white bg-gray-signal rounded-3xl p-5 gap-5">
+  <div class="flex gap-3">
+    <span>Status:</span><span id="b-sinal-ms">--</span>
+  </div>
+
+  <div
+    class="h-1 w-full bg-gray-600 rounded-full dark:bg-gray-600 relative mb-5"
+  >
+    <div
+      id="progress-bar-sinal"
+      class="progress-bar bg-green h-1 text-xs font-medium text-white text-center p-0.5 leading-none rounded-full"
+      style="width: 0%"
+    >
+    </div>
+  </div>
+
+  <div class="flex justify-between gap-3">
+    <div
+      class="text-center w-full flex flex-col gap-1 bg-slate-950 rounded-xl p-2"
+    >
+      <span class="font-black italic">Sinal</span>
+      <span id="sinal-valor" class="text-yellow-500 font-bold">?</span>
+    </div>
+
+    <div
+      class="text-center w-full flex flex-col gap-1 bg-slate-950 rounded-xl p-2"
+    >
+      <span class="font-black italic">Validade</span>
+      <span id="sinal-validade" class="text-color-green font-bold">--:--</span>
+    </div>
+  </div>
+</div>
+
+<button
+  id="signalButton"
+  class="flex justify-center items-center min-h-12 text-white font-black italic rounded-3xl bg-button-new transition-transform transform-gpu hover:scale-110 relative"
+>
+  <span class="relative z-10">BUSCAR SINAL</span>
+  <svg
+    id="signalLoadingIcon"
+    class="absolute transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white animate-spin hidden"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      stroke-width="4"></circle>
+    <path
+      class="opacity-75"
+      fill="currentColor"
+      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+    ></path>
+  </svg>
+</button>
+
+<script>
+  const signalButton = document.getElementById("signalButton");
+  const signalLoadingIcon = document.getElementById("signalLoadingIcon");
+  const progressSpan = document.getElementById("b-sinal-ms");
+  const progressBar = document.getElementById("progress-bar-sinal");
+  const signalValueSpan = document.getElementById("sinal-valor");
+  const signalValiditySpan = document.getElementById("sinal-validade");
+
+  signalButton.addEventListener("click", () => {
+    // Resetar todas as modificações anteriores
+    progressSpan.textContent = "PREPARANDO...";
+    progressSpan.classList.remove("text-lime-400", "font-black", "italic");
+    progressBar.style.width = "0%";
+    signalValiditySpan.textContent = "--:--";
+    signalValueSpan.textContent = "--";
+    // Oculta o texto e mostra o ícone de carregamento
+    signalButton.querySelector("span").classList.add("hidden");
+    signalLoadingIcon.classList.remove("hidden");
+
+    // Gera um valor aleatório entre 5 e 15 segundos (5000 e 15000 milissegundos)
+    const randomDuration =
+      Math.floor(Math.random() * (15000 - 5000 + 1)) + 5000;
+
+    // Inicia um contador para controlar o progresso
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 25;
+      if (progress <= 100) {
+        switch (progress) {
+          case 25:
+            exibirMensagem("Enviando requisições...");
+            break;
+          case 50:
+            exibirMensagem("Buscando oportunidades nas casas de apostas...");
+            break;
+          case 75:
+            exibirMensagem("Aguardando resposta dos servidores externos...");
+            break;
+          case 100:
+            exibirMensagem("Analisando resposta do servidor...");
+            break;
+        }
+        // Atualiza a largura da barra de progresso com base no progresso
+        atualizarBarraProgresso(progress);
+      }
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        // Após a pausa, mostra novamente o texto e oculta o ícone de carregamento
+        signalButton.querySelector("span").classList.remove("hidden");
+        signalLoadingIcon.classList.add("hidden");
+
+        // Gera um valor aleatório entre 5 e 16 para o sinal
+        const randomSignalValue = Math.floor(Math.random() * (16 - 5 + 1)) + 5;
+        signalValueSpan.textContent = randomSignalValue.toString();
+
+        // Gera um valor aleatório entre 1 e 4 minutos em milissegundos
+        const randomExtraMinutes =
+          Math.floor(Math.random() * (4 - 1 + 1) + 1) * 60000;
+        const currentDate = new Date();
+        const validityDate = new Date(
+          currentDate.getTime() + randomExtraMinutes,
+        );
+        const validityTime = validityDate.toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        signalValiditySpan.textContent = validityTime;
+
+        // Altera a mensagem final
+        progressSpan.textContent = "ENTRADA ENCONTRADA COM SUCESSO!";
+        progressSpan.classList.add("text-lime-400"); // Adiciona a cor verde limão do Tailwind CSS
+        progressSpan.classList.add("font-black");
+        progressSpan.classList.add("italic");
+        // Torna o elemento #plataforma-content visível
+        document
+          .getElementById("plataforma-content")
+          .classList.remove("hidden");
+        document.getElementById("plataforma-content").classList.add("flex");
+
+        // Garante que a barra de progresso atinja 100% apenas quando a animação estiver completa
+        setTimeout(() => {
+          progressBar.style.width = "100%";
+        }, 500); // Adiciona um pequeno atraso para sincronizar com o final da animação
+      }
+    }, randomDuration / 4); // Dividido por 4 porque queremos 4 mensagens (25, 50, 75, 100)
+  });
+
+  function exibirMensagem(mensagem) {
+    progressSpan.textContent = mensagem;
+  }
+
+  function atualizarBarraProgresso(progresso) {
+    progressBar.style.width = `${progresso}%`;
+  }
+</script>
+
+<div id="plataforma-content" class="flex-col text-white gap-3 hidden">
+  <span class="font-black italic text-center">PLATAFORMA DE R$10</span>
+  <div class="flex w-full justify-center gap-3">
+    <img class="rounded-md" src="/casa-de-aposta1.png" alt="" />
+  </div>
+  <iframe
+    class="w-full mb-4 rounded-xl"
+    style="height: 700px;"
+    src="https://7y.com/?id=99054305"
+    frameborder="0"></iframe>
+</div>
+
+<style>
+  .progress-bar {
+    transition: width 1s ease; /* Define a transição com duração de 1 segundo e função de timing ease */
+  }
+
+  @keyframes spin-slow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin {
+    animation: spin-slow 2s linear infinite;
+  }
+
+  .bg-gray-signal {
+    background: linear-gradient(98.92deg, #2b2b2b 1.21%, #1f1f1f 96.81%);
+  }
+
+  .text-color-green {
+    color: #2dee0e;
+  }
+
+  .bg-green {
+    background-color: #2dee0e;
+  }
+
+  .bg-button-new {
+    background: linear-gradient(97.08deg, #f71052 34.97%, #b30f9a 123.14%);
+  }
+</style>

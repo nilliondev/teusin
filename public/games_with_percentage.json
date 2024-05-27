@@ -1,0 +1,541 @@
+{
+    "0": {
+        "id": 4,
+        "nome": "Fortune Rabbit",
+        "progress": 15,
+        "min": 40,
+        "max": 21
+    },
+    "1": {
+        "id": 5,
+        "nome": "Fortune Tiger",
+        "progress": 84,
+        "min": 92,
+        "max": 86
+    },
+    "2": {
+        "id": 6,
+        "nome": "Fortune Ox",
+        "progress": 93,
+        "min": 57,
+        "max": 3
+    },
+    "3": {
+        "id": 7,
+        "nome": "Fortune Mouse",
+        "progress": 50,
+        "min": 62,
+        "max": 22
+    },
+    "4": {
+        "id": 8,
+        "nome": "Fortune Gems",
+        "progress": 33,
+        "min": 93,
+        "max": 5
+    },
+    "5": {
+        "id": 9,
+        "nome": "Fortune Dragon",
+        "progress": 56,
+        "min": 34,
+        "max": 39
+    },
+    "6": {
+        "id": 10,
+        "nome": "Fortune Gods",
+        "progress": 96,
+        "min": 25,
+        "max": 35
+    },
+    "7": {
+        "id": 11,
+        "nome": "Genie's 3 Wishes",
+        "progress": 2,
+        "min": 15,
+        "max": 61
+    },
+    "8": {
+        "id": 12,
+        "nome": "Bikini Paradise",
+        "progress": 40,
+        "min": 28,
+        "max": 6
+    },
+    "9": {
+        "id": 13,
+        "nome": "Captain's Bounty",
+        "progress": 6,
+        "min": 95,
+        "max": 80
+    },
+    "10": {
+        "id": 14,
+        "nome": "Double Fortune",
+        "progress": 6,
+        "min": 5,
+        "max": 91
+    },
+    "11": {
+        "id": 15,
+        "nome": "Dragon Tiger",
+        "progress": 68,
+        "min": 40,
+        "max": 19
+    },
+    "12": {
+        "id": 16,
+        "nome": "Ganesha Gold",
+        "progress": 28,
+        "min": 18,
+        "max": 10
+    },
+    "13": {
+        "id": 17,
+        "nome": "Leprechauns",
+        "progress": 61,
+        "min": 66,
+        "max": 35
+    },
+    "14": {
+        "id": 18,
+        "nome": "Lucky Fortunes",
+        "progress": 32,
+        "min": 15,
+        "max": 62
+    },
+    "15": {
+        "id": 19,
+        "nome": "Lucky Neko",
+        "progress": 62,
+        "min": 47,
+        "max": 39
+    },
+    "16": {
+        "id": 20,
+        "nome": "Lucky Piggy",
+        "progress": 49,
+        "min": 82,
+        "max": 69
+    },
+    "17": {
+        "id": 21,
+        "nome": "Medusa",
+        "progress": 20,
+        "min": 97,
+        "max": 72
+    },
+    "18": {
+        "id": 22,
+        "nome": "Mermaid Riches",
+        "progress": 74,
+        "min": 57,
+        "max": 50
+    },
+    "19": {
+        "id": 23,
+        "nome": "Midas Fortune Square",
+        "progress": 79,
+        "min": 43,
+        "max": 3
+    },
+    "20": {
+        "id": 24,
+        "nome": "Muay Thai",
+        "progress": 43,
+        "min": 12,
+        "max": 82
+    },
+    "21": {
+        "id": 25,
+        "nome": "Dragon Hatch",
+        "progress": 84,
+        "min": 52,
+        "max": 74
+    },
+    "22": {
+        "id": 26,
+        "nome": "Ganesha Fortune",
+        "progress": 90,
+        "min": 64,
+        "max": 79
+    },
+    "23": {
+        "id": 27,
+        "nome": "Piggy Gold",
+        "progress": 46,
+        "min": 81,
+        "max": 51
+    },
+    "24": {
+        "id": 28,
+        "nome": "Queen of Bounty",
+        "progress": 98,
+        "min": 46,
+        "max": 4
+    },
+    "25": {
+        "id": 29,
+        "nome": "Super Market",
+        "progress": 35,
+        "min": 53,
+        "max": 39
+    },
+    "26": {
+        "id": 30,
+        "nome": "The Great Icescape Square",
+        "progress": 60,
+        "min": 9,
+        "max": 72
+    },
+    "27": {
+        "id": 31,
+        "nome": "The Mad Genius",
+        "progress": 3,
+        "min": 84,
+        "max": 46
+    },
+    "28": {
+        "id": 32,
+        "nome": "Wild Bandito",
+        "progress": 39,
+        "min": 46,
+        "max": 84
+    },
+    "29": {
+        "id": 33,
+        "nome": "Big Bass Bonanza",
+        "progress": 22,
+        "min": 36,
+        "max": 86
+    },
+    "30": {
+        "id": 34,
+        "nome": "Gate of Olympus",
+        "progress": 49,
+        "min": 61,
+        "max": 99
+    },
+    "31": {
+        "id": 35,
+        "nome": "Gravity Bonanza",
+        "progress": 41,
+        "min": 89,
+        "max": 27
+    },
+    "32": {
+        "id": 36,
+        "nome": "Sweet Bonanza",
+        "progress": 60,
+        "min": 45,
+        "max": 40
+    },
+    "33": {
+        "id": 37,
+        "nome": "Cash Chips",
+        "progress": 78,
+        "min": 33,
+        "max": 91
+    },
+    "34": {
+        "id": 38,
+        "nome": "5 Lions",
+        "progress": 94,
+        "min": 64,
+        "max": 23
+    },
+    "35": {
+        "id": 39,
+        "nome": "5 Lions Dance",
+        "progress": 55,
+        "min": 99,
+        "max": 38
+    },
+    "36": {
+        "id": 40,
+        "nome": "7 Piggies",
+        "progress": 7,
+        "min": 98,
+        "max": 95
+    },
+    "37": {
+        "id": 41,
+        "nome": "888 Gold",
+        "progress": 27,
+        "min": 77,
+        "max": 18
+    },
+    "38": {
+        "id": 42,
+        "nome": "Asgard",
+        "progress": 57,
+        "min": 47,
+        "max": 8
+    },
+    "39": {
+        "id": 43,
+        "nome": "Aztec Bonanza",
+        "progress": 75,
+        "min": 21,
+        "max": 18
+    },
+    "40": {
+        "id": 44,
+        "nome": "Big Bass Keeping It Reel",
+        "progress": 36,
+        "min": 39,
+        "max": 55
+    },
+    "41": {
+        "id": 45,
+        "nome": "Big Bass Splash",
+        "progress": 88,
+        "min": 100,
+        "max": 42
+    },
+    "42": {
+        "id": 46,
+        "nome": "Bigger Bass Blizzard Christmas Catch",
+        "progress": 29,
+        "min": 40,
+        "max": 80
+    },
+    "43": {
+        "id": 47,
+        "nome": "Bigger Bass Bonanza",
+        "progress": 83,
+        "min": 32,
+        "max": 77
+    },
+    "44": {
+        "id": 48,
+        "nome": "Bomb Bonanza",
+        "progress": 8,
+        "min": 64,
+        "max": 38
+    },
+    "45": {
+        "id": 49,
+        "nome": "Buffalo King",
+        "progress": 12,
+        "min": 49,
+        "max": 75
+    },
+    "46": {
+        "id": 50,
+        "nome": "Buffalo King Megaways",
+        "progress": 74,
+        "min": 8,
+        "max": 4
+    },
+    "47": {
+        "id": 51,
+        "nome": "Cash Bonanza",
+        "progress": 12,
+        "min": 20,
+        "max": 64
+    },
+    "48": {
+        "id": 52,
+        "nome": "Chicken Drop",
+        "progress": 94,
+        "min": 5,
+        "max": 50
+    },
+    "49": {
+        "id": 53,
+        "nome": "Chilli Heat",
+        "progress": 82,
+        "min": 64,
+        "max": 2
+    },
+    "50": {
+        "id": 54,
+        "nome": "Shaolin Soccer",
+        "progress": 48,
+        "min": 44,
+        "max": 29
+    },
+    "51": {
+        "id": 55,
+        "nome": "Money Coming",
+        "progress": 87,
+        "min": 48,
+        "max": 34
+    },
+    "52": {
+        "id": 56,
+        "nome": "Grazy777",
+        "progress": 53,
+        "min": 49,
+        "max": 36
+    },
+    "53": {
+        "id": 57,
+        "nome": "Treasure Bowl",
+        "progress": 92,
+        "min": 98,
+        "max": 45
+    },
+    "54": {
+        "id": 58,
+        "nome": "Jungle Delight",
+        "progress": 90,
+        "min": 64,
+        "max": 23
+    },
+    "55": {
+        "id": 59,
+        "nome": "Gem Saviour",
+        "progress": 97,
+        "min": 24,
+        "max": 66
+    },
+    "56": {
+        "id": 60,
+        "nome": "Wild Bounty Showdown",
+        "progress": 15,
+        "min": 3,
+        "max": 55
+    },
+    "57": {
+        "id": 61,
+        "nome": "Honey Trap of Diao Chan",
+        "progress": 40,
+        "min": 86,
+        "max": 9
+    },
+    "58": {
+        "id": 62,
+        "nome": "Win Win Won",
+        "progress": 42,
+        "min": 68,
+        "max": 80
+    },
+    "59": {
+        "id": 63,
+        "nome": "Plushie Frenzy",
+        "progress": 60,
+        "min": 20,
+        "max": 85
+    },
+    "60": {
+        "id": 64,
+        "nome": "Tree of Fortune",
+        "progress": 39,
+        "min": 41,
+        "max": 50
+    },
+    "61": {
+        "id": 65,
+        "nome": "Hood vs Wolf",
+        "progress": 81,
+        "min": 93,
+        "max": 59
+    },
+    "62": {
+        "id": 66,
+        "nome": "Reel Love",
+        "progress": 100,
+        "min": 69,
+        "max": 60
+    },
+    "63": {
+        "id": 67,
+        "nome": "Hip Hop Panda",
+        "progress": 38,
+        "min": 49,
+        "max": 78
+    },
+    "64": {
+        "id": 68,
+        "nome": "Hotpot",
+        "progress": 24,
+        "min": 76,
+        "max": 29
+    },
+    "65": {
+        "id": 69,
+        "nome": "Legend of Perseus",
+        "progress": 73,
+        "min": 1,
+        "max": 71
+    },
+    "66": {
+        "id": 70,
+        "nome": "Rise of Apollo",
+        "progress": 7,
+        "min": 69,
+        "max": 39
+    },
+    "67": {
+        "id": 71,
+        "nome": "Butterfly Blossom",
+        "progress": 44,
+        "min": 34,
+        "max": 7
+    },
+    "68": {
+        "id": 72,
+        "nome": "Dragon Legend",
+        "progress": 87,
+        "min": 45,
+        "max": 80
+    },
+    "69": {
+        "id": 73,
+        "nome": "Legend of Hou Yi",
+        "progress": 65,
+        "min": 23,
+        "max": 84
+    },
+    "70": {
+        "id": 74,
+        "nome": "Speed Winner",
+        "progress": 1,
+        "min": 8,
+        "max": 95
+    },
+    "71": {
+        "id": 75,
+        "nome": "Jurassic Kingdom",
+        "progress": 49,
+        "min": 89,
+        "max": 60
+    },
+    "72": {
+        "id": 76,
+        "nome": "Treasures of Aztec",
+        "progress": 94,
+        "min": 93,
+        "max": 51
+    },
+    "73": {
+        "id": 77,
+        "nome": "Circus Delight",
+        "progress": 81,
+        "min": 14,
+        "max": 47
+    },
+    "74": {
+        "id": 78,
+        "nome": "Egypt's Book of Mystery",
+        "progress": 3,
+        "min": 55,
+        "max": 26
+    },
+    "75": {
+        "id": 79,
+        "nome": "Mafia Mayhem",
+        "progress": 69,
+        "min": 59,
+        "max": 58
+    },
+    "76": {
+        "id": 80,
+        "nome": "Mahjong Ways",
+        "progress": 80,
+        "min": 50,
+        "max": 26
+    }
+}

@@ -1,0 +1,114 @@
+---
+import TopBarBack from "../components/TopBarBack.astro";
+---
+
+<TopBarBack />
+
+<div class="h-screen w-full flex flex-col items-center pt-3">
+    <div class="flex justify-center" style="margin-top: 80px;">
+        <img src="/logo-boostia.svg" alt="" />
+        <img src="/teusin-avatar.png" alt="" />
+    </div>
+    <a
+        href="#"
+        class="mb-5 w-full relative text-lg px-6 py-2 border border-rose-900 text-white rounded-3xl text-center flex items-center justify-center"
+    >
+        Insira o link do jogo que você deseja analisar
+    </a>
+
+    <div
+        class="w-full flex flex-col gap-5 p-3 bg-opacity-50 bg-black backdrop-blur-sm rounded-3xl"
+    >
+        <input
+            type="url"
+            id="link-game"
+            class="h-14 bg-white border border-gray-300 text-gray-900 text-sm rounded-2xl block w-full p-2.5 font-medium"
+            placeholder="link"
+            required
+        />
+
+        <button
+            id="signalButton"
+            class="flex h-14 font-black italic text-white justify-center items-center bg-button-new px-3 py-1 rounded-2xl mt-5 transition-transform transform-gpu hover:scale-110 relative"
+        >
+            <span class="relative z-10">Analisar</span>
+            <svg
+                id="signalLoadingIcon"
+                class="absolute w-5 h-5 text-white animate-spin hidden"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+            >
+                <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"></circle>
+                <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    // animation btn
+
+    const signalButton = document.getElementById("signalButton");
+    const signalLoadingIcon = document.getElementById("signalLoadingIcon");
+    const linkGameInput = document.getElementById(
+        "link-game",
+    ) as HTMLInputElement;
+
+    signalButton.addEventListener("click", () => {
+        // Oculta o texto e mostra o ícone de carregamento
+        signalButton.querySelector("span").classList.add("hidden");
+        signalLoadingIcon.classList.remove("hidden");
+
+        // Simula uma pausa de 3 segundos
+        setTimeout(() => {
+            // Obtém o link do jogo do input
+            const gameLink = linkGameInput.value;
+
+            // Verifica se o valor inserido é uma URL válida
+            const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+            if (urlPattern.test(gameLink)) {
+                // Se for uma URL válida, salva o link do jogo no localStorage
+                localStorage.setItem("game-link", gameLink);
+
+                // Redireciona para "/boost-ia"
+                window.location.href = "/boost-ia";
+            } else {
+                // Se não for uma URL válida, exibe um alerta
+                alert("Por favor, insira um link válido.");
+                // Mostra o texto novamente e oculta o ícone de carregamento
+                signalButton.querySelector("span").classList.remove("hidden");
+                signalLoadingIcon.classList.add("hidden");
+            }
+        }, 3000);
+    });
+</script>
+
+<style>
+    .bg-button-new {
+        background: linear-gradient(97.08deg, #f71052 34.97%, #b30f9a 123.14%);
+    }
+
+    @keyframes spin-slow {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .animate-spin {
+        animation: spin-slow 2s linear infinite;
+    }
+</style>

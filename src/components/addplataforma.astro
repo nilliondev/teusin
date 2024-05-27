@@ -1,0 +1,107 @@
+---
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, set, push } from 'firebase/database';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+// Configuração do Firebase
+const firebaseConfig = {
+   apiKey: "AIzaSyADyfWHzFEuWmONGHC_g_pprYy88InC84o",
+   authDomain: "teusin-ofc.firebaseapp.com",
+   databaseURL: "https://teusin-ofc-default-rtdb.firebaseio.com",
+   projectId: "teusin-ofc",
+   storageBucket: "teusin-ofc.appspot.com",
+   messagingSenderId: "467277806855",
+   appId: "1:467277806855:web:b5608025fcc25fef4319a2",
+   measurementId: "G-BBG1KZGXRC"
+};
+
+// Inicializa o Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const storage = getStorage(app);
+
+// Função para lidar com o envio do formulário
+async function handleSubmit(e) {
+   e.preventPreventDefault();
+
+   // Coletando dados do formulário
+   const form = e.target;
+   const link = form.platform_link.value;
+   const image = form.platform_image.files[0];
+
+   if (!link || !image) {
+      alert("Por favor, preencha ambos os campos.");
+      return;
+   }
+
+   try {
+      // Carregando a imagem para o Firebase Storage
+      const storageR = storageRef(storage, `imagens/${image.name}`);
+      await uploadBytes(storageR, image);
+
+      const imageUrl = await getDownloadURL(storageR);
+
+      // Dados a serem enviados para o Realtime Database
+      const newData = {
+         link: link,
+         image_url: imageUrl,
+      };
+
+      // Adicionando ao Realtime Database
+      const newRef = ref(database, "plataformas");
+      await set(push(newRef), newData);
+
+      alert("Plataforma adicionada com sucesso!");
+
+      form.reset(); // Limpa o formulário
+   } catch (error) {
+      console.error("Erro ao adicionar a plataforma:", error);
+      alert("Ocorreu um erro. Por favor, tente novamente.");
+   }
+}
+
+---
+
+<section class="flex flex-col items-center min-h-screen justify-center">
+   <h1 class="text-3xl mb-6">Adicionar Plataforma</h1>
+
+   <form id="platform-form" class="flex flex-col items-center w-full">
+      <input type="url" class="input mb-4 w-1/2" name="platform_link" placeholder="Digite o link da plataforma" />
+
+      <input type="file" class="input mb-4 w-1/2" name="platform_image" />
+
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+         Adicionar
+      </button>
+   </form>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+   const form = document.getElementById("platform-form");
+
+   form.addEventListener("submit", handleSubmit);
+});
+</script>
+
+<style>
+   body {
+      background-color: #1a1a1a; /* Fundo escuro */
+      color: #eaeaea; /* Texto claro */
+   }
+
+   .input {
+      background-color: #2e2e2e; /* Fundo escuro para a caixa de entrada */
+      border: none; /* Remover borda */
+      padding: 10px; /* Espaçamento interno */
+      color: #fff; /* Texto branco */
+   }
+
+   .input::placeholder {
+      color: #aaa; /* Cor do texto de placeholder */
+   }
+
+   .input:focus {
+      outline: none; /* Remover contorno ao focar */
+   }
+</style>

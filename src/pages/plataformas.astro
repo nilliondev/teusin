@@ -1,0 +1,31 @@
+---
+import TopBarBack from "../components/TopBarBack.astro";
+import LinkPlataforma from "../components/PlataformasLink.astro";
+import Layout from "../layouts/LayoutApp.astro";
+---
+<TopBarBack>
+
+</TopBarBack>
+<Layout title="Teusin APP - Game Sinal">
+  <main class="px-8 flex flex-col w-full gap-5 md:w-4/12">
+    <div class="flex justify-center" style="margin-top: 80px;">
+      <img src="/best-plataformas.svg" alt="">
+      <img src="/teusin-avatar.png" alt="">
+    </div>
+    <LinkPlataforma></LinkPlataforma>
+  </main>
+
+
+</Layout>
+
+<!-- script.js -->
+<script>
+  // Verificar se há dados de nome e email no localStorage
+  const nome = localStorage.getItem('nome');
+  const email = localStorage.getItem('email');
+
+  // Se os dados não estiverem presentes, redirecione para a página inicial
+  if (!nome || !email) {
+    window.location.href = "/";
+  }
+</script>

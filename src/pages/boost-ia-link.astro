@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LinkBoostIA from '../components/LinkBoostIA.astro';
+---
+
+<Layout title="Teusin APP - Boost IA">
+	<main class="px-8 flex flex-col w-full gap-5 md:w-4/12">
+		<LinkBoostIA client />
+	</main>
+</Layout>
+
+
+<script>
+	const nome = localStorage.getItem('nome');
+	const email = localStorage.getItem('email');
+  
+	if (!nome || !email) {
+	  window.location.href = "/";
+	}
+  </script>
+  

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvar no Local Storage</title>
+</head>
+<body>
+    <h1>Teste Local Storage</h1>
+    <p>Verifique o console para ver o status de "Pay".</p>
+
+    <script>
+        // main.ts
+
+// Função que é chamada quando a página é carregada
+window.onload = function() {
+    // Salvando o dado no localStorage
+    localStorage.setItem('Pay', 'True'); // ou você pode usar 'Yes'
+
+    // Lendo o dado salvo e mostrando no console
+    const payStatus: string | null = localStorage.getItem('Pay');
+    console.log('Pay ativado:', payStatus);
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<div class="flex flex-col px-8 h-full w-full justify-center items-center">
+
+    <input type="search" id="search" placeholder="Buscar jogo" class="w-full bg-white bg-opacity-25 focus:bg-opacity-100 px-4 py-2 border-2 mt-6 border-none focus:border-rose-500 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-rose-500 transition duration-300 ease-in-out" />
+
+    <div id="games-container" class="flex flex-wrap gap-4 justify-center"></div>
+    <footer class="h-40 w-full"></footer>
+</div>
+
+<script>
+// Definindo a interface para o objeto do jogo
+interface Jogo {
+    id: number;
+    nome: string;
+    progress: number;
+    min: number;
+    max: number;
+    background?: string;
+}
+
+interface DadosAdicionais {
+    id: number;
+    background: string;
+    visible: boolean;
+    bets: string[];
+}
+
+const gamesOrdem = [78, 51, 26, 22, 24, 23, 41, 42, 57, 76, 73, 75, 71, 56, 70, 69, 121, 68, 66, 65, 44, 45, 63, 29, 120, 119, 59, 43, 54, 118, 61, 62, 83, 25, 67, 53, 79, 80, 81, 82, 84, 85, 86, 87, 5, 33, 90, 21, 40, 91, 92, 95, 74, 99, 34, 93, 94, 36, 18, 102, 60, 100, 52, 4, 110, 13, 116, 114, 8, 27, 105, 103, 12, 113, 31, 106, 7, 9, 104, 117, 11, 14, 108, 109, 107, 37, 111, 115, 122, 15, 58, 38, 39, 10, 28, 64, 72, 77, 88, 89, 96, 97, 98, 101, 112, 35, 30, 32, 46, 47, 48, 49, 6, 50, 55];
+
+
+// Função para obter a cor com base na porcentagem
+function getColorForPercentage(percentage: number): string {
+    if (percentage <= 39) {
+        return '#ff3232'; // Vermelho
+    } else if (percentage <= 69) {
+        return '#F8CD4D'; // Amarelo
+    } else {
+        return '#59e479'; // Verde
+    }
+}
+
+let dadosCombinados: (Jogo & { dadosAdicionais?: DadosAdicionais })[] = [];
+let dadosAntigos = ''; // Inicialize com uma string vazia
+
+
+
+// Função para criar o HTML para cada jogo
+function criarHTMLJogo(jogo: Jogo, dadosAdicionais: DadosAdicionais | undefined): string {
+    const backgroundColor = dadosAdicionais?.background ?? jogo.background ?? 'rgba(0, 0, 0, 0.7)';
+    
+    const apostaSugerida = calcular(jogo, dadosAdicionais);
+	    // Obter cores para as barras de porcentagem
+	const progressColor = getColorForPercentage(jogo.progress);
+    const minColor = getColorForPercentage(jogo.min);
+    const maxColor = getColorForPercentage(jogo.max);
+
+    return `
+        <div class="relative h-[397px] bg-black shadow-2xl rounded-xl text-white font-bold my-2 w-[175px]">
+            <img src="/games/capa/${jogo.id}.webp" alt="Imagem do Jogo" class="w-full h-[170px] object-cover rounded-t-xl">
+            
+            <div class="absolute top-[150px] left-0 w-full h-[150px] bg-no-repeat bg-center bg-cover"
+                 style="background-image: url('/games/capa/${jogo.id}.webp'); transform: rotate(180deg) scaleX(-1); -webkit-mask-image: linear-gradient(to top, transparent, black 94%); mask-image: linear-gradient(to top, transparent, black 94%);">
+            </div>
+
+            <div class="absolute top-[150px] pt-2.5 px-2 w-full h-[247px] rounded-b-xl"
+				style="background-color: ${backgroundColor.replace('rgb', 'rgba').replace(')', ', 0.7)')}; backdrop-filter: blur(6px);">
+                <div class="flex items-center gap-3 mb-1">
+                    <img src="/games/thumb/${jogo.id}.webp" alt="Thumbnail do Jogo" class="w-12 h-12">
+                    <h3 class="text-base font-semibold text-left leading-none">${jogo.nome}</h3>
+                </div>
+
+				<div class="text-center space-y-1 text-xs">
+                    <div>
+                        <p>Aposta Padrão: ${jogo.progress}%</p>
+                        <div class="w-full h-3 bg-white rounded-full overflow-hidden">
+                            <div class="h-3 rounded-full" style="width: ${jogo.progress}%; background-color: ${progressColor};"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Aposta Mínima: ${jogo.min}%</p>
+                        <div class="w-full h-3 bg-white rounded-full overflow-hidden">
+                            <div class="h-3 rounded-full" style="width: ${jogo.min}%; background-color: ${minColor};"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Aposta Máxima: ${jogo.max}%</p>
+                        <div class="w-full h-3 bg-white rounded-full overflow-hidden">
+                            <div class="h-3 rounded-full" style="width: ${jogo.max}%; background-color: ${maxColor};"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-3 bg-black bg-opacity-30 text-center rounded-lg p-2 text-xs">
+                    <span class="block mb-2">Aposta Sugerida:</span>
+                    ${apostaSugerida}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Função para calcular a aposta sugerida
+function calcular(jogo: Jogo, dadosAdicionais: DadosAdicionais | undefined): string {
+    let resultado = '';
+    let bet = 1;
+
+    // Cálculo baseado na aposta mínima
+    if (jogo.min >= 90) bet = 1;
+    else if (jogo.min >= 80) bet = 2;
+    else if (jogo.min >= 70) bet = 3;
+    else if (jogo.min >= 60) bet = 4;
+    else if (jogo.min >= 50) bet = 5;
+    else if (jogo.min >= 40) bet = 4;
+    else if (jogo.min >= 30) bet = 3;
+    else if (jogo.min >= 20) bet = 2;
+    else if (jogo.min < 20) bet = 1;
+
+    // Ajuste com base na aposta máxima
+    if (jogo.max >= 70) {
+        bet = bet > 1 ? bet * 2 : bet + 2;
+    } else if (Math.abs(jogo.min - jogo.progress) < jogo.max) {
+        bet++;
+    }
+
+    resultado = `${bet}° BET BÔNUS`;
+    if (dadosAdicionais && dadosAdicionais.bets && dadosAdicionais.bets[bet - 1]) {
+        resultado += ` (${dadosAdicionais.bets[bet - 1]})`;
+    }
+
+    // Cálculo para a segunda aposta
+    bet = Math.ceil((100 - jogo.progress) / 10);
+    resultado += `<br>${bet}° BET CONEXÃO`;
+    if (dadosAdicionais && dadosAdicionais.bets && dadosAdicionais.bets[bet - 1]) {
+        resultado += ` (${dadosAdicionais.bets[bet - 1]})`;
+    }
+
+    return resultado;
+}
+
+
+// Função para carregar os dados e criar o HTML
+function carregarDadosEcriarHTML(): void {
+    Promise.all([
+        fetch('games_with_percentage.json').then(res => res.json()),
+        fetch('data2.json').then(res => res.json())
+    ]).then(([dadosBrutos, dadosAdicionais]) => {
+        // Verificando se os dados são diferentes dos dados anteriores
+        const novosDados = JSON.stringify(dadosBrutos);
+        if (dadosAntigos !== novosDados) {
+            dadosAntigos = novosDados;
+
+            // Convertendo dadosBrutos em um array, se for um objeto
+            let dadosArray: Jogo[];
+            if (Array.isArray(dadosBrutos)) {
+                dadosArray = dadosBrutos;
+            } else {
+                dadosArray = Object.values(dadosBrutos);
+            }
+
+            const dadosAdicionaisArray: DadosAdicionais[] = dadosAdicionais;
+
+            // Preenchendo a variável global 'dadosCombinados'
+            dadosCombinados = dadosArray.map((jogo: Jogo) => {
+                const dadosExtra = dadosAdicionaisArray.find(da => da.id === jogo.id);
+                return { ...jogo, dadosAdicionais: dadosExtra };
+            });
+
+            // Ordenar os jogos com base em gamesOrdem
+            dadosCombinados.sort((a, b) => {
+                const posA = gamesOrdem.indexOf(a.id);
+                const posB = gamesOrdem.indexOf(b.id);
+                return posA - posB;
+            });
+
+            let htmlFinal = '';
+            dadosCombinados.forEach(jogo => {
+                if (jogo.dadosAdicionais && jogo.dadosAdicionais.visible) {
+                    htmlFinal += criarHTMLJogo(jogo, jogo.dadosAdicionais);
+                }
+            });
+
+            const container = document.getElementById('games-container');
+            if (container) {
+                container.innerHTML = htmlFinal;
+            }
+        }
+    }).catch(error => {
+        console.error('Erro ao carregar os dados:', error);
+    });
+}
+
+function filtrarJogos(busca: string): void {
+    const buscaFormatada = busca.toLowerCase().trim();
+    const container = document.getElementById('games-container');
+    if (container) {
+        let htmlFiltrado = '';
+        dadosCombinados.forEach(jogo => {
+            // Verificando se 'nome' está definido antes de usar 'toLowerCase'
+            if (jogo.nome) {
+                const nomeJogoFormatado = jogo.nome.toLowerCase();
+                if (buscaFormatada === '' || nomeJogoFormatado.includes(buscaFormatada)) {
+                    if (jogo.dadosAdicionais?.visible) {
+                        htmlFiltrado += criarHTMLJogo(jogo, jogo.dadosAdicionais);
+                    }
+                }
+            }
+        });
+
+        container.innerHTML = htmlFiltrado;
+    }
+}
+
+document.getElementById('search')!.addEventListener('input', (event) => {
+    const valorBusca = (event.target as HTMLInputElement).value;
+    filtrarJogos(valorBusca);
+});
+
+
+carregarDadosEcriarHTML(); // Chama a função inicialmente
+
+// Configurando o intervalo para atualizar os dados a cada 60 segundos
+setInterval(carregarDadosEcriarHTML, 60000);
+
+</script>

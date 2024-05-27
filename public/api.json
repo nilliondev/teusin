@@ -1,0 +1,774 @@
+{
+    "games": [
+        {
+            "id": 1,
+            "nome": "Fortune Rabbit",
+            "imagem": "/games/fortunerabbit.svg",
+            "porcentagens": {
+                "ap": 55,
+                "am": 83,
+                "ax": 19
+            }
+        },
+        {
+            "id": 2,
+            "nome": "Fortune Tiger",
+            "imagem": "/games/pgsoft-fortune-tiger.svg",
+            "porcentagens": {
+                "ap": 39,
+                "am": 97,
+                "ax": 42
+            }
+        },
+        {
+            "id": 3,
+            "nome": "Fortune Ox",
+            "imagem": "/games/fortune-ox.svg",
+            "porcentagens": {
+                "ap": 43,
+                "am": 38,
+                "ax": 50
+            }
+        },
+        {
+            "id": 4,
+            "nome": "Fortune Mouse",
+            "imagem": "/games/FortuneMouse.svg",
+            "porcentagens": {
+                "ap": 92,
+                "am": 37,
+                "ax": 79
+            }
+        },
+        {
+            "id": 5,
+            "nome": "Fortune Gems",
+            "imagem": "/games/fortune_gems.svg",
+            "porcentagens": {
+                "ap": 25,
+                "am": 78,
+                "ax": 87
+            }
+        },
+        {
+            "id": 6,
+            "nome": "Fortune Dragon",
+            "imagem": "/games/fortune_dragon.svg",
+            "porcentagens": {
+                "ap": 31,
+                "am": 98,
+                "ax": 42
+            }
+        },
+        {
+            "id": 7,
+            "nome": "Fortune Gods",
+            "imagem": "/games/fortune-gods.svg",
+            "porcentagens": {
+                "ap": 77,
+                "am": 22,
+                "ax": 57
+            }
+        },
+        {
+            "id": 8,
+            "nome": "Genie's 3 Wishes",
+            "imagem": "/games/genies-3-wishes.svg",
+            "porcentagens": {
+                "ap": 36,
+                "am": 77,
+                "ax": 54
+            }
+        },
+        {
+            "id": 9,
+            "nome": "Bikini Paradise",
+            "imagem": "/games/bikiniparadise.svg",
+            "porcentagens": {
+                "ap": 74,
+                "am": 80,
+                "ax": 63
+            }
+        },
+        {
+            "id": 10,
+            "nome": "Captain's Bounty",
+            "imagem": "/games/captains-treasure.svg",
+            "porcentagens": {
+                "ap": 15,
+                "am": 18,
+                "ax": 89
+            }
+        },
+        {
+            "id": 11,
+            "nome": "Double Fortune",
+            "imagem": "/games/double-fortune.svg",
+            "porcentagens": {
+                "ap": 36,
+                "am": 41,
+                "ax": 27
+            }
+        },
+        {
+            "id": 12,
+            "nome": "Dragon Tiger",
+            "imagem": "/games/dragon-tiger.svg",
+            "porcentagens": {
+                "ap": 36,
+                "am": 46,
+                "ax": 71
+            }
+        },
+        {
+            "id": 13,
+            "nome": "Ganesha Gold",
+            "imagem": "/games/ganesha-gold.svg",
+            "porcentagens": {
+                "ap": 98,
+                "am": 87,
+                "ax": 28
+            }
+        },
+        {
+            "id": 14,
+            "nome": "Leprechauns",
+            "imagem": "/games/leprechauns.svg",
+            "porcentagens": {
+                "ap": 70,
+                "am": 42,
+                "ax": 24
+            }
+        },
+        {
+            "id": 15,
+            "nome": "Lucky Fortunes",
+            "imagem": "/games/lucky-fortunes.svg",
+            "porcentagens": {
+                "ap": 93,
+                "am": 51,
+                "ax": 21
+            }
+        },
+        {
+            "id": 16,
+            "nome": "Lucky Neko",
+            "imagem": "/games/lucky-neko.svg",
+            "porcentagens": {
+                "ap": 95,
+                "am": 91,
+                "ax": 80
+            }
+        },
+        {
+            "id": 17,
+            "nome": "Lucky Piggy",
+            "imagem": "/games/lucky-piggy.svg",
+            "porcentagens": {
+                "ap": 97,
+                "am": 65,
+                "ax": 50
+            }
+        },
+        {
+            "id": 18,
+            "nome": "Medusa",
+            "imagem": "/games/medusa.svg",
+            "porcentagens": {
+                "ap": 49,
+                "am": 36,
+                "ax": 94
+            }
+        },
+        {
+            "id": 19,
+            "nome": "Mermaid Riches",
+            "imagem": "/games/mermaid-riches.svg",
+            "porcentagens": {
+                "ap": 54,
+                "am": 82,
+                "ax": 56
+            }
+        },
+        {
+            "id": 20,
+            "nome": "Midas Fortune Square",
+            "imagem": "/games/midas-fortune-square.svg",
+            "porcentagens": {
+                "ap": 61,
+                "am": 53,
+                "ax": 97
+            }
+        },
+        {
+            "id": 21,
+            "nome": "Muay Thai",
+            "imagem": "/games/Muay-Thai.svg",
+            "porcentagens": {
+                "ap": 46,
+                "am": 40,
+                "ax": 15
+            }
+        },
+        {
+            "id": 22,
+            "nome": "Dragon Hatch",
+            "imagem": "/games/pgs_dragonhatch.svg",
+            "porcentagens": {
+                "ap": 20,
+                "am": 54,
+                "ax": 51
+            }
+        },
+        {
+            "id": 23,
+            "nome": "Ganesha Fortune",
+            "imagem": "/games/pgs_ganeshafortune.svg",
+            "porcentagens": {
+                "ap": 81,
+                "am": 79,
+                "ax": 66
+            }
+        },
+        {
+            "id": 24,
+            "nome": "Piggy Gold",
+            "imagem": "/games/pgs_piggygold.svg",
+            "porcentagens": {
+                "ap": 92,
+                "am": 51,
+                "ax": 51
+            }
+        },
+        {
+            "id": 25,
+            "nome": "Queen of Bounty",
+            "imagem": "/games/queen-of-bounty.svg",
+            "porcentagens": {
+                "ap": 53,
+                "am": 94,
+                "ax": 36
+            }
+        },
+        {
+            "id": 26,
+            "nome": "Super Market",
+            "imagem": "/games/super-market.svg",
+            "porcentagens": {
+                "ap": 42,
+                "am": 90,
+                "ax": 39
+            }
+        },
+        {
+            "id": 27,
+            "nome": "The Great Icescape Square",
+            "imagem": "/games/the-great-icescape-square.svg",
+            "porcentagens": {
+                "ap": 63,
+                "am": 59,
+                "ax": 23
+            }
+        },
+        {
+            "id": 28,
+            "nome": "The Mad Genius",
+            "imagem": "/games/the-mad-genius.svg",
+            "porcentagens": {
+                "ap": 57,
+                "am": 82,
+                "ax": 38
+            }
+        },
+        {
+            "id": 29,
+            "nome": "Wild Bandito",
+            "imagem": "/games/wild-bandito.svg",
+            "porcentagens": {
+                "ap": 39,
+                "am": 38,
+                "ax": 21
+            }
+        },
+        {
+            "id": 30,
+            "nome": "Big Bass Bonanza",
+            "imagem": "/games/big-bass-bonanza.svg",
+            "porcentagens": {
+                "ap": 23,
+                "am": 26,
+                "ax": 39
+            }
+        },
+        {
+            "id": 31,
+            "nome": "Gate of Olympus",
+            "imagem": "/games/gate-of-olympus.svg",
+            "porcentagens": {
+                "ap": 20,
+                "am": 74,
+                "ax": 82
+            }
+        },
+        {
+            "id": 32,
+            "nome": "Gravity Bonanza",
+            "imagem": "/games/gravity-bonanza.svg",
+            "porcentagens": {
+                "ap": 20,
+                "am": 36,
+                "ax": 40
+            }
+        },
+        {
+            "id": 33,
+            "nome": "Sweet Bonanza",
+            "imagem": "/games/sweet-bonanza.svg",
+            "porcentagens": {
+                "ap": 14,
+                "am": 36,
+                "ax": 27
+            }
+        },
+        {
+            "id": 34,
+            "nome": "Cash Chips",
+            "imagem": "/games/cash-chips.svg",
+            "porcentagens": {
+                "ap": 17,
+                "am": 98,
+                "ax": 87
+            }
+        },
+        {
+            "id": 35,
+            "nome": "5 Lions",
+            "imagem": "/games/5-lions.svg",
+            "porcentagens": {
+                "ap": 94,
+                "am": 13,
+                "ax": 22
+            }
+        },
+        {
+            "id": 36,
+            "nome": "5 Lions Dance",
+            "imagem": "/games/5-lions-dance.svg",
+            "porcentagens": {
+                "ap": 42,
+                "am": 65,
+                "ax": 88
+            }
+        },
+        {
+            "id": 37,
+            "nome": "7 Piggies",
+            "imagem": "/games/7-piggies.svg",
+            "porcentagens": {
+                "ap": 56,
+                "am": 42,
+                "ax": 70
+            }
+        },
+        {
+            "id": 38,
+            "nome": "888 Gold",
+            "imagem": "/games/888-gold.svg",
+            "porcentagens": {
+                "ap": 94,
+                "am": 86,
+                "ax": 65
+            }
+        },
+        {
+            "id": 39,
+            "nome": "Asgard",
+            "imagem": "/games/asgard.svg",
+            "porcentagens": {
+                "ap": 21,
+                "am": 98,
+                "ax": 35
+            }
+        },
+        {
+            "id": 40,
+            "nome": "Aztec Bonanza",
+            "imagem": "/games/aztec-bonanza.svg",
+            "porcentagens": {
+                "ap": 66,
+                "am": 78,
+                "ax": 42
+            }
+        },
+        {
+            "id": 41,
+            "nome": "Big Bass Keeping It Reel",
+            "imagem": "/games/big-bass-keeping-it-reel.svg",
+            "porcentagens": {
+                "ap": 61,
+                "am": 27,
+                "ax": 85
+            }
+        },
+        {
+            "id": 42,
+            "nome": "Big Bass Splash",
+            "imagem": "/games/big-bass-splash.svg",
+            "porcentagens": {
+                "ap": 74,
+                "am": 70,
+                "ax": 91
+            }
+        },
+        {
+            "id": 43,
+            "nome": "Bigger Bass Blizzard Christmas Catch",
+            "imagem": "/games/bigger-bass-blizzard-christmas-catch.svg",
+            "porcentagens": {
+                "ap": 47,
+                "am": 76,
+                "ax": 41
+            }
+        },
+        {
+            "id": 44,
+            "nome": "Bigger Bass Bonanza",
+            "imagem": "/games/bigger-bass-bonanza.svg",
+            "porcentagens": {
+                "ap": 74,
+                "am": 66,
+                "ax": 65
+            }
+        },
+        {
+            "id": 45,
+            "nome": "Bomb Bonanza",
+            "imagem": "/games/bomb-bonanza.svg",
+            "porcentagens": {
+                "ap": 47,
+                "am": 65,
+                "ax": 74
+            }
+        },
+        {
+            "id": 46,
+            "nome": "Buffalo King",
+            "imagem": "/games/buffalo-king.svg",
+            "porcentagens": {
+                "ap": 59,
+                "am": 30,
+                "ax": 55
+            }
+        },
+        {
+            "id": 47,
+            "nome": "Buffalo King Megaways",
+            "imagem": "/games/buffalo-king-megaways.svg",
+            "porcentagens": {
+                "ap": 92,
+                "am": 59,
+                "ax": 81
+            }
+        },
+        {
+            "id": 48,
+            "nome": "Cash Bonanza",
+            "imagem": "/games/cash-bonanza.svg",
+            "porcentagens": {
+                "ap": 55,
+                "am": 21,
+                "ax": 35
+            }
+        },
+        {
+            "id": 49,
+            "nome": "Chicken Drop",
+            "imagem": "/games/chicken-drop.svg",
+            "porcentagens": {
+                "ap": 72,
+                "am": 53,
+                "ax": 97
+            }
+        },
+        {
+            "id": 50,
+            "nome": "Chilli Heat",
+            "imagem": "/games/chilli-heat.svg",
+            "porcentagens": {
+                "ap": 23,
+                "am": 21,
+                "ax": 90
+            }
+        },
+        {
+            "id": 51,
+            "nome": "Shaolin Soccer",
+            "imagem": "/games/shaolin_soccer.svg",
+            "porcentagens": {
+                "ap": 24,
+                "am": 77,
+                "ax": 39
+            }
+        },
+        {
+            "id": 52,
+            "nome": "Money Coming",
+            "imagem": "/games/money_coming.svg",
+            "porcentagens": {
+                "ap": 69,
+                "am": 93,
+                "ax": 38
+            }
+        },
+        {
+            "id": 53,
+            "nome": "Grazy777",
+            "imagem": "/games/grazy777.svg",
+            "porcentagens": {
+                "ap": 32,
+                "am": 82,
+                "ax": 78
+            }
+        },
+        {
+            "id": 54,
+            "nome": "Treasure Bowl",
+            "imagem": "/games/treasure_bowl.svg",
+            "porcentagens": {
+                "ap": 38,
+                "am": 97,
+                "ax": 64
+            }
+        },
+        {
+            "id": 55,
+            "nome": "Jungle Delight",
+            "imagem": "/games/jungle_delight.svg",
+            "porcentagens": {
+                "ap": 17,
+                "am": 35,
+                "ax": 49
+            }
+        },
+        {
+            "id": 56,
+            "nome": "Gem Saviour",
+            "imagem": "/games/gem_saviour.svg",
+            "porcentagens": {
+                "ap": 50,
+                "am": 36,
+                "ax": 93
+            }
+        },
+        {
+            "id": 57,
+            "nome": "Wild Bounty Showdown",
+            "imagem": "/games/wild_bounty_showdown.svg",
+            "porcentagens": {
+                "ap": 89,
+                "am": 82,
+                "ax": 93
+            }
+        },
+        {
+            "id": 58,
+            "nome": "Honey Trap of Diao Chan",
+            "imagem": "/games/honey_trap_of_diao_chan.svg",
+            "porcentagens": {
+                "ap": 52,
+                "am": 27,
+                "ax": 95
+            }
+        },
+        {
+            "id": 59,
+            "nome": "Win Win Won",
+            "imagem": "/games/win_win_won.svg",
+            "porcentagens": {
+                "ap": 54,
+                "am": 77,
+                "ax": 14
+            }
+        },
+        {
+            "id": 60,
+            "nome": "Plushie Frenzy",
+            "imagem": "/games/plushie_frenzy.svg",
+            "porcentagens": {
+                "ap": 87,
+                "am": 68,
+                "ax": 48
+            }
+        },
+        {
+            "id": 61,
+            "nome": "Tree of Fortune",
+            "imagem": "/games/tree_of_fortune.svg",
+            "porcentagens": {
+                "ap": 59,
+                "am": 66,
+                "ax": 80
+            }
+        },
+        {
+            "id": 62,
+            "nome": "Hood vs Wolf",
+            "imagem": "/games/hood_vs_wolf.svg",
+            "porcentagens": {
+                "ap": 87,
+                "am": 14,
+                "ax": 45
+            }
+        },
+        {
+            "id": 63,
+            "nome": "Reel Love",
+            "imagem": "/games/reel_love.svg",
+            "porcentagens": {
+                "ap": 80,
+                "am": 77,
+                "ax": 54
+            }
+        },
+        {
+            "id": 64,
+            "nome": "Hip Hop Panda",
+            "imagem": "/games/hip_hop_panda.svg",
+            "porcentagens": {
+                "ap": 40,
+                "am": 48,
+                "ax": 47
+            }
+        },
+        {
+            "id": 65,
+            "nome": "Hotpot",
+            "imagem": "/games/hotpot.svg",
+            "porcentagens": {
+                "ap": 41,
+                "am": 36,
+                "ax": 62
+            }
+        },
+        {
+            "id": 66,
+            "nome": "Legend of Perseus",
+            "imagem": "/games/legend-of-perseus.svg",
+            "porcentagens": {
+                "ap": 31,
+                "am": 22,
+                "ax": 58
+            }
+        },
+        {
+            "id": 67,
+            "nome": "Rise of Apollo",
+            "imagem": "/games/rise-of-apollo.svg",
+            "porcentagens": {
+                "ap": 40,
+                "am": 90,
+                "ax": 13
+            }
+        },
+        {
+            "id": 68,
+            "nome": "Butterfly Blossom",
+            "imagem": "/games/butterfly-blossom.svg",
+            "porcentagens": {
+                "ap": 67,
+                "am": 42,
+                "ax": 40
+            }
+        },
+        {
+            "id": 69,
+            "nome": "Dragon Legend",
+            "imagem": "/games/dragon_legend.svg",
+            "porcentagens": {
+                "ap": 68,
+                "am": 90,
+                "ax": 44
+            }
+        },
+        {
+            "id": 70,
+            "nome": "Legend of Hou Yi",
+            "imagem": "/games/legend_of_hou_yi.svg",
+            "porcentagens": {
+                "ap": 86,
+                "am": 28,
+                "ax": 66
+            }
+        },
+        {
+            "id": 71,
+            "nome": "Speed Winner",
+            "imagem": "/games/speed_winner.svg",
+            "porcentagens": {
+                "ap": 18,
+                "am": 89,
+                "ax": 60
+            }
+        },
+        {
+            "id": 72,
+            "nome": "Jurassic Kingdom",
+            "imagem": "/games/jurassic_kingdom.svg",
+            "porcentagens": {
+                "ap": 71,
+                "am": 86,
+                "ax": 71
+            }
+        },
+        {
+            "id": 73,
+            "nome": "Treasures of Aztec",
+            "imagem": "/games/treasures_of_aztec.svg",
+            "porcentagens": {
+                "ap": 21,
+                "am": 53,
+                "ax": 97
+            }
+        },
+        {
+            "id": 74,
+            "nome": "Circus Delight",
+            "imagem": "/games/circus_delight.svg",
+            "porcentagens": {
+                "ap": 74,
+                "am": 32,
+                "ax": 55
+            }
+        },
+        {
+            "id": 75,
+            "nome": "Egypt's Book of Mystery",
+            "imagem": "/games/egypt's_book_of_mystery.svg",
+            "porcentagens": {
+                "ap": 48,
+                "am": 68,
+                "ax": 91
+            }
+        },
+        {
+            "id": 76,
+            "nome": "Mafia Mayhem",
+            "imagem": "/games/mafia_mayhem.svg",
+            "porcentagens": {
+                "ap": 18,
+                "am": 36,
+                "ax": 52
+            }
+        },
+        {
+            "id": 77,
+            "nome": "Mahjong Ways",
+            "imagem": "/games/mahjong_ways.svg",
+            "porcentagens": {
+                "ap": 13,
+                "am": 56,
+                "ax": 15
+            }
+        }
+    ]
+}

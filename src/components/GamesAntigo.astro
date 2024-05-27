@@ -1,0 +1,240 @@
+<h1 class="text-base text-white w-full px-8 py-8 font-black italic">Games</h1>
+<div id="gamesContainer" class="grid grid-cols-2 md:grid-cols-4 gap-4 px-8">
+</div>
+<footer class="h-40 w-full"></footer>
+
+<script>
+   // Função para gerar porcentagem aleatória entre 10 e 85
+   function getRandomPercentage() {
+    return Math.floor(Math.random() * (85 - 10 + 1)) + 10;
+  }
+
+  // Função para verificar se já passaram 5 segundos desde a última atualização
+  function shouldUpdate() {
+    var lastUpdate = parseInt(localStorage.getItem("lastUpdate")) || 0;
+    var currentTime = new Date().getTime();
+    var elapsedTime = currentTime - lastUpdate;
+    var fiveSeconds = 5 * 1000; // 5 segundos em milissegundos
+    return elapsedTime >= fiveSeconds;
+  }
+
+  // Função para atualizar os jogos
+  function updateGames() {
+    var gamesData = JSON.parse(localStorage.getItem("gamesData")) || {};
+    var gamesContainer = document.getElementById("gamesContainer");
+    gamesContainer.innerHTML = "";
+
+    // URLs das imagens dos jogos
+    var gameImages = [
+      { name: "Fortune Rabbit", path: "/games/fortunerabbit.svg" },
+      { name: "Fortune Tiger", path: "/games/pgsoft-fortune-tiger.svg" },
+      { name: "Fortune Ox", path: "/games/fortune-ox.svg" },
+      { name: "Fortune Mouse", path: "/games/FortuneMouse.svg" },
+      { name: "Fortune Gems", path: "/games/fortune_gems.svg" },
+      { name: "Fortune Dragon", path: "/games/fortune_dragon.svg"},
+      { name: "Fortune Gods", path: "/games/fortune-gods.svg" },
+      { name: "Genie's 3 Wishes", path: "/games/genies-3-wishes.svg" },
+      { name: "Bikini Paradise", path: "/games/bikiniparadise.svg" },
+      { name: "Captain's Bounty", path: "/games/captains-treasure.svg" },
+      { name: "Double Fortune", path: "/games/double-fortune.svg" },
+      { name: "Dragon Tiger", path: "/games/dragon-tiger.svg" },
+      { name: "Ganesha Gold", path: "/games/ganesha-gold.svg" },
+      { name: "Leprechauns", path: "/games/leprechauns.svg" },
+      { name: "Lucky Fortunes", path: "/games/lucky-fortunes.svg" },
+      { name: "Lucky Neko", path: "/games/lucky-neko.svg" },
+      { name: "Lucky Piggy", path: "/games/lucky-piggy.svg" },
+      { name: "Medusa", path: "/games/medusa.svg" },
+      { name: "Mermaid Riches", path: "/games/mermaid-riches.svg" },
+      { name: "Midas Fortune Square", path: "/games/midas-fortune-square.svg" },
+      { name: "Muay Thai", path: "/games/Muay-Thai.svg" },
+      { name: "Dragon Hatch", path: "/games/pgs_dragonhatch.svg" },
+      { name: "Ganesha Fortune", path: "/games/pgs_ganeshafortune.svg" },
+      { name: "Piggy Gold", path: "/games/pgs_piggygold.svg" },
+      { name: "Queen of Bounty", path: "/games/queen-of-bounty.svg" },
+      { name: "Super Market", path: "/games/super-market.svg" },
+      { name: "The Great Icescape Square", path: "/games/the-great-icescape-square.svg", },
+      { name: "The Mad Genius", path: "/games/the-mad-genius.svg" },
+      { name: "Wild Bandito", path: "/games/wild-bandito.svg" },
+      { name: "Big Bass Bonanza", path: "/games/big-bass-bonanza.svg" },
+      { name: "Gate of Olympus", path: "/games/gate-of-olympus.svg" },
+      { name: "Gravity Bonanza", path: "/games/gravity-bonanza.svg" },
+      { name: "Sweet Bonanza", path: "/games/sweet-bonanza.svg" },
+      { name: "Cash Chips", path: "/games/cash-chips.svg" },
+      { name: "5 Lions", path: "/games/5-lions.svg" },
+      { name: "5 Lions Dance", path: "/games/5-lions-dance.svg" },
+      { name: "7 Piggies", path: "/games/7-piggies.svg" },
+      { name: "888 Gold", path: "/games/888-gold.svg" },
+      { name: "Asgard", path: "/games/asgard.svg" },
+      { name: "Aztec Bonanza", path: "/games/aztec-bonanza.svg" },
+      { name: "Big Bass Keeping It Reel", path: "/games/big-bass-keeping-it-reel.svg", },
+      { name: "Big Bass Splash", path: "/games/big-bass-splash.svg" },
+      { name: "Bigger Bass Blizzard Christmas Catch", path: "/games/bigger-bass-blizzard-christmas-catch.svg", },
+      { name: "Bigger Bass Bonanza", path: "/games/bigger-bass-bonanza.svg" },
+      { name: "Bomb Bonanza", path: "/games/bomb-bonanza.svg" },
+      { name: "Buffalo King", path: "/games/buffalo-king.svg" },
+      { name: "Buffalo King Megaways", path: "/games/buffalo-king-megaways.svg",},
+      { name: "Cash Bonanza", path: "/games/cash-bonanza.svg" },
+      { name: "Chicken Drop", path: "/games/chicken-drop.svg" },
+      { name: "Chilli Heat", path: "/games/chilli-heat.svg" },
+      { name: "Shaolin Soccer", path: "/games/shaolin_soccer.svg"},
+      { name: "Money Coming", path: "/games/money_coming.svg"},
+      { name: "Grazy777", path: "/games/grazy777.svg"},
+      { name: "Treasure Bowl", path: "/games/treasure_bowl.svg"},
+      { name: "Jungle Delight", path: "/games/jungle_delight.svg"},
+      { name: "Gem Saviour", path: "/games/gem_saviour.svg"},
+      { name: "Wild Bounty Showdown", path: "/games/wild_bounty_showdown.svg"},
+      { name: "Honey Trap of Diao Chan", path: "/games/honey_trap_of_diao_chan.svg"},
+      { name: "Win Win Won", path: "/games/win_win_won.svg"},
+      { name: "Plushie Frenzy", path: "/games/plushie_frenzy.svg"},
+      { name: "Tree of Fortune", path: "/games/tree_of_fortune.svg"},
+      { name: "Hood vs Wolf", path: "/games/hood_vs_wolf.svg"},
+      { name: "Reel Love", path: "/games/reel_love.svg"},
+      { name: "Hip Hop Panda", path: "/games/hip_hop_panda.svg"},
+      { name: "Hotpot", path: "/games/hotpot.svg"},
+      { name: "Legend of Perseus", path: "/games/legend-of-perseus.svg"},
+      { name: "Rise of Apollo", path: "/games/rise-of-apollo.svg"},
+      { name: "Butterfly Blossom", path: "/games/butterfly-blossom.svg"},
+      { name: "Dragon Legend", path: "/games/dragon_legend.svg"},
+      { name: "Legend of Hou Yi", path: "/games/legend_of_hou_yi.svg"},
+      { name: "Speed Winner", path: "/games/speed_winner.svg"},
+      { name: "Jurassic Kingdom", path: "/games/jurassic_kingdom.svg"},
+      { name: "Treasures of Aztec", path: "/games/treasures_of_aztec.svg"},
+      { name: "Circus Delight", path: "/games/circus_delight.svg"},
+      { name: "Egypt's Book of Mystery", path: "/games/egypt's_book_of_mystery.svg"},
+      { name: "Mafia Mayhem", path: "/games/mafia_mayhem.svg"},
+      { name: "Mahjong Ways", path: "/games/mahjong_ways.svg"}
+    ];
+
+    var updateNeeded = shouldUpdate();
+
+    gameImages.forEach(function (game) {
+      var gameLink = document.createElement("a");
+      gameLink.href = "";
+      gameLink.classList.add(
+        "flex",
+        "flex-col",
+        "items-center",
+        "gap-3",
+        "relative",
+        "transition-transform",
+        "transform-gpu",
+      );
+
+      gameLink.addEventListener("mouseenter", function () {
+        gameLink.classList.add("hover:scale-110");
+      });
+      gameLink.addEventListener("mouseleave", function () {
+        gameLink.classList.remove("hover:scale-110");
+      });
+
+      var gameImage = document.createElement("img");
+      gameImage.src = game.path;
+      gameImage.alt = game.name;
+
+      var percentage;
+      if (!gamesData[game.name] || updateNeeded) {
+        percentage = getRandomPercentage();
+        gamesData[game.name] = {
+          percentage: percentage,
+          previousPercentage: gamesData[game.name] ? gamesData[game.name].percentage : 0
+        };
+      } else {
+        percentage = gamesData[game.name].percentage;
+      }
+
+      var previousPercentage = gamesData[game.name].previousPercentage;
+
+      var color = "";
+      if (percentage < 50 && percentage >= 20) {
+        color = "#EEAF0E"; // Amarelo
+      } else if (percentage < 20) {
+        color = "#EE0E5F"; // Vermelho
+      } else {
+        color = "#2DEE0E"; // Verde
+      }
+
+      var percentageContainer = document.createElement("div");
+      percentageContainer.classList.add(
+        "h-5",
+        "w-full",
+        "bg-gray-600",
+        "rounded-full",
+        "dark:bg-gray-600",
+        "relative",
+      );
+
+      var percentageBar = document.createElement("div");
+      percentageBar.classList.add(
+        "h-5",
+        "text-xs",
+        "font-medium",
+        "text-white",
+        "text-center",
+        "p-0.5",
+        "leading-none",
+        "rounded-full",
+      );
+      percentageBar.style.width = previousPercentage + "%";
+      percentageBar.style.backgroundColor = color;
+      percentageBar.style.transition = "width 0.5s ease";
+
+      var percentageTextContainer = document.createElement("p");
+      percentageTextContainer.classList.add(
+        "absolute",
+        "inset-0",
+        "flex",
+        "items-center",
+        "justify-center",
+      );
+
+      var percentageText = document.createElement("span");
+      percentageText.classList.add("font-black", "italic", "text-white");
+      percentageText.style.textShadow = "0 0 5px rgba(0,0,0,0.5)";
+      percentageText.textContent = percentage + "%";
+
+      percentageTextContainer.appendChild(percentageText);
+      percentageBar.appendChild(percentageTextContainer);
+      percentageContainer.appendChild(percentageBar);
+
+      gameLink.appendChild(gameImage);
+      gameLink.appendChild(percentageContainer);
+
+      gameLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        var gameData = {
+          name: game.name,
+          path: game.path,
+          percentage: percentage,
+        };
+        localStorage.removeItem("Game current");
+        localStorage.setItem("Game current", JSON.stringify(gameData));
+        window.location.href = "/game";
+      });
+
+      gamesContainer.appendChild(gameLink);
+
+      setTimeout(function () {
+        percentageBar.style.width = percentage + "%";
+      }, 100);
+    });
+
+    if (updateNeeded) {
+      localStorage.setItem("gamesData", JSON.stringify(gamesData));
+      localStorage.setItem("lastUpdate", new Date().getTime().toString());
+    }
+  }
+
+  function checkAndUpdate() {
+    updateGames();
+  }
+
+  checkAndUpdate();
+  setInterval(checkAndUpdate, 60 * 1000);
+</script>
+
+<style>
+  .contorno {
+    -webkit-text-stroke-width: 2px; /* largura da borda */
+    -webkit-text-stroke-color: #000; /* cor da borda */
+  }
+</style>
